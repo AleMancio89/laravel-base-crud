@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Booking;
+use App\Http\Requests\BookingFormRequest;
 
 class BookingsController extends Controller
 {
@@ -13,9 +14,11 @@ class BookingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $bookings = Booking::all();
+
+        $bookings = Booking::all();            
+        
 
         $columns = [
             'id' => 'Prenotazione',
@@ -44,16 +47,19 @@ class BookingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(BookingFormRequest $request)
+    {         
+
+        $validated = $request->validated();
+
         $newBooking = new Booking();
 
-        $newBooking->guest_full_name= $request->input('name');
-        $newBooking->from_date= $request->input('check_in');
-        $newBooking->to_date= $request->input('check_out');
-        $newBooking->guest_credit_card= $request->input('credit_card');
-        $newBooking->room= $request->input('room');
-        $newBooking->more_details= $request->input('more_details');
+        $newBooking->$validated['guest_full_name']= $request->input('name');
+        $newBooking->$validated['from_date']= $request->input('check_in');
+        $newBooking->$validated['to_date']= $request->input('check_out');
+        $newBooking->$validated['guest_credit_card']= $request->input('credit_card');
+        $newBooking->$validated['room']= $request->input('room');
+        $newBooking->$validated['more_details']= $request->input('more_details');
 
         $newBooking->save();
 
