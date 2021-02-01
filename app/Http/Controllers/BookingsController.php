@@ -54,12 +54,12 @@ class BookingsController extends Controller
 
         $newBooking = new Booking();
 
-        $newBooking->$validated['guest_full_name']= $request->input('name');
-        $newBooking->$validated['from_date']= $request->input('check_in');
-        $newBooking->$validated['to_date']= $request->input('check_out');
-        $newBooking->$validated['guest_credit_card']= $request->input('credit_card');
-        $newBooking->$validated['room']= $request->input('room');
-        $newBooking->$validated['more_details']= $request->input('more_details');
+        $newBooking->guest_full_name= $validated['name'];
+        $newBooking->from_date= $validated['check_in'];
+        $newBooking->to_date= $validated['check_out'];
+        $newBooking->guest_credit_card= $validated['credit_card'];
+        $newBooking->room= $validated['room'];
+        $newBooking->more_details= $validated['more_details'];
 
         $newBooking->save();
 
