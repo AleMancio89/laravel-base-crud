@@ -11,6 +11,7 @@
                 <th scope="col">{{ $value }}</th>
             @endforeach
                 <th scope="col">Dettagli</th>
+                <th scope="col">Modifica</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td>{{ $booking->from_date }}</td>
                     <td>{{ $booking->to_date }}</td>
                     <td><a href="{{ route('bookings.show', $booking->id) }}">Scheda</a></td>                
+                    <td><a href="{{ route('bookings.edit', $booking->id) }}">Modifica</a></td>                
                 </tr>            
             @endforeach
         </tbody>
