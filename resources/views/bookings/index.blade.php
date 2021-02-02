@@ -12,6 +12,7 @@
             @endforeach
                 <th scope="col">Dettagli</th>
                 <th scope="col">Modifica</th>
+                <th scope="col">Elimina</th>
             </tr>
         </thead>
         <tbody>
@@ -23,7 +24,14 @@
                     <td>{{ $booking->from_date }}</td>
                     <td>{{ $booking->to_date }}</td>
                     <td><a href="{{ route('bookings.show', $booking->id) }}">Scheda</a></td>                
-                    <td><a href="{{ route('bookings.edit', $booking->id) }}">Modifica</a></td>                
+                    <td><a href="{{ route('bookings.edit', $booking->id) }}">Modifica</a></td>              
+                    <td>
+                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-danger">Elimina</button>
+                        </form>
+                    </td>                
                 </tr>            
             @endforeach
         </tbody>

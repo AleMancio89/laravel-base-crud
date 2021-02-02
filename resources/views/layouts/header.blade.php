@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="{{ route('bookings.index') }}">
         <img src="{{ asset('img/logo.png') }}" alt=""  height="50">
       </a>
       <form class="form-inline my-2 my-lg-0 align-self-end d-flex" action="{{ route('bookings.create') }}">
